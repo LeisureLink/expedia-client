@@ -1,8 +1,8 @@
 {
-  "name": "expedia-client",
+  "name": "expedia-quickconnect",
   "version": "1.0.0",
   "description": "Expedia QuickConnnect Client",
-  "main": "index.js",
+  "main": "build/index.js",
   "directories": {
     "test": "test"
   },
@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "axios": "^0.11.0",
+    "joi": "^8.1.0",
     "jxon": "^2.0.0-beta.2"
   }
 }

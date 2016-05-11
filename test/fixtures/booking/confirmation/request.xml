@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BookingConfirmRQ xmlns="http://www.expediaconnect.com/EQC/BC/2007/09">
+  <Authentication username="testuser" password="testpass"/>
+  <Hotel id="734658"/>
+  <BookingConfirmNumbers>
+    <BookingConfirmNumber bookingID="252743459" bookingType="Book"
+                          confirmNumber="E2340589B" confirmTime="2013-12-30T23:45:00Z"/>
+  </BookingConfirmNumbers>
+</BookingConfirmRQ>
