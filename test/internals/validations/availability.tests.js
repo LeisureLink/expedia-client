@@ -3,7 +3,7 @@ import Test from 'ava';
 import Validator from '../../../src/internals/validation';
 
 Test('valid availability', () => {
-  const model = {
+  const availabilityAndRates = [{
     from: '2014-12-15',
     to: '2015-01-20',
     roomId: 40000,
@@ -22,7 +22,7 @@ Test('valid availability', () => {
         { rate: 60.00, occupancy: 1, kind: 'PerOccupancy' },
         { rate: 100.00, occupancy: 2, kind: 'PerOccupancy' },
         { rate: 135.00, occupancy: 3, kind: 'PerOccupancy' },
-        { rate: 160.00, occupancy: 4, type: 'boots' }
+        { rate: 160.00, occupancy: 4, kind: 'PerOccupancy' }
       ],
 
       restrictions: {
@@ -30,11 +30,11 @@ Test('valid availability', () => {
         isClosedToDeparture: false
       }
     }
-  };
+  }];
 
-  return Validator.availability(model)
+  return Validator.availability(availabilityAndRates)
     .then(result => {
-      console.log(result);
-      expect(result).to.be.ok;
+      expect(result[0].ratesPlan.rates).to.have.length(4);
+      expect(result[0].ratesPlan.restrictions.lengthOfStay).to.be.ok;
     });
 });

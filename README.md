@@ -75,16 +75,16 @@ const updates = [
         // Enum Types: ['PerDay', 'PerOccupancy', 'PerPerson']
         // When 'PerOccupancy', the occupancy attribute is required, else it's optional
         
-        { rate:  60.00, occupancy: 1, type: 'PerOccupancy' },
-        { rate:  100.00, occupancy: 2, type: 'PerOccupancy' },
-        { rate:  135.00, occupancy: 3, type: 'PerOccupancy' },
-        { rate:  160.00, occupancy: 4, type: 'PerOccupancy' }
+        { rate:  60.00, occupancy: 1, kind: 'PerOccupancy' },
+        { rate:  100.00, occupancy: 2, kind: 'PerOccupancy' },
+        { rate:  135.00, occupancy: 3, kind: 'PerOccupancy' },
+        { rate:  160.00, occupancy: 4, kind: 'PerOccupancy' }
       ],
       
       restrictions: {
         closedToArrival: false,
         closedToDeparture: false,
-        lengthOfStay: { min: 1, max: 7}
+        lengthOfStay: { minDays: 1, maxDays: 7}
       }
     }
   }

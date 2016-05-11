@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export const Availability = {
+export const Availability = Joi.array().items(Joi.object({
   from: Joi.date().format('YYYY-MM-DD').required(),
   to: Joi.date().format('YYYY-MM-DD').required(),
   roomId: Joi.number().positive().required(),
@@ -45,4 +45,4 @@ export const Availability = {
     }).required()
 
   }).required()
-};
+}).required()).min(1);

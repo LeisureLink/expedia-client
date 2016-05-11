@@ -1,6 +1,8 @@
 import Axios from 'axios';
 
-export default (options = {}) => {
-  options.responseType = options.responseType || 'document';
-  return Axios.create(options);
-}
+Axios.defaults.responseType = 'document';
+Axios.defaults.headers['Content-Type'] = 'application/xml';
+
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
+export default Axios;
