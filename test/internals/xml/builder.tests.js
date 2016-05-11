@@ -1,0 +1,26 @@
+import Test from 'ava';
+import Xml from '../../../src/internals/xml';
+
+Test('builds the appropriate structure', () => {
+  const availability = {
+    AvailRateUpdateRQ: {
+      $xmlns: 'http://www.expediaconnect.com/EQC/AR/2011/06',
+      Authentication: {
+        $username: 'testuser'
+      },
+      AvailRateUpdate: {
+        Rate: [
+          { PerOccupancy: 1 },
+          { PerOccupancy: 2 }
+        ]
+      }
+    }
+  };
+
+  const Result = `<?xml version="1.0" encoding="UTF-8"?><AvailRateUpdateRQ xmlns="http://www.expediaconnect.com/EQC/AR/2011/06"><Authentication username="testuser"/><AvailRateUpdate><Rate><PerOccupancy>1</PerOccupancy></Rate><Rate><PerOccupancy>2</PerOccupancy></Rate></AvailRateUpdate></AvailRateUpdateRQ>`;
+
+  return Xml.builder(availability, 'http://www.expediaconnect.com/EQC/AR/2011/06').then(result => {
+    expect(result).to.equal(Result);
+  });
+  
+});
