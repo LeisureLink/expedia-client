@@ -52,8 +52,8 @@ export default (username, password) => {
        *
        * @returns {Promise<{}>}
        */
-      retrieve() {
-        return BookingRetrieval(username, password);
+      retrieve(query) {
+        return BookingRetrieval(username, password, query);
       }
     },
     parr: {

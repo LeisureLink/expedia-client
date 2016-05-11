@@ -46,3 +46,10 @@ export const Availability = Joi.array().items(Joi.object({
 
   }).required()
 }).required()).min(1);
+
+export const BookingQuery = Joi.object().keys({
+  hotelId: Joi.number().positive().optional(),
+  bookingId: Joi.number().positive().optional(),
+  status: Joi.string().optional(),
+  previousDays: Joi.number().min(1).max(30).default(1).optional()
+});

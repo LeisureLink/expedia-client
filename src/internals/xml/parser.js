@@ -28,8 +28,5 @@ export default (xml, options = {}) => {
 
   if (!xml || xml.toString().length === 0) throw new Error('Xml is required');
 
-  return new Promise((resolve) => {
-    const result = Jxon.stringToJs(xml);
-    return resolve(result);
-  });
+  return Jxon.stringToJs(xml);
 };

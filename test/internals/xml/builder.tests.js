@@ -19,7 +19,7 @@ Test('builds the appropriate structure', () => {
 
   const Result = `<?xml version="1.0" encoding="UTF-8"?><AvailRateUpdateRQ xmlns="http://www.expediaconnect.com/EQC/AR/2011/06"><Authentication username="testuser"/><AvailRateUpdate><Rate><PerOccupancy>1</PerOccupancy></Rate><Rate><PerOccupancy>2</PerOccupancy></Rate></AvailRateUpdate></AvailRateUpdateRQ>`;
 
-  return Xml.builder(availability, 'http://www.expediaconnect.com/EQC/AR/2011/06').then(result => {
+  return Xml.builder(availability).then(result => {
     expect(result).to.equal(Result);
   });
   

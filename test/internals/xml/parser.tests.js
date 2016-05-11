@@ -17,9 +17,8 @@ const AvailabilityResponse = Path.resolve(__dirname, '../../fixtures/availabilit
 
 Test('parses the response correctly', () => {
   return readFile(AvailabilityResponse).then(xml => {
-    return Xml.parser(xml).then(result => {
-      expect(result.availrateupdaters.success).to.be.true();
-    });
+    const result = Xml.parser(xml);
+    expect(result.availrateupdaters.success).to.be.true();
   });
 });
 

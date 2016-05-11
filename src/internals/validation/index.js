@@ -28,7 +28,7 @@ export default {
     },
 
     retrieval(value, options) {
-
+      return validate(value, Schemas.BookingQuery, options);
     }
   },
   parr: {

@@ -11,7 +11,7 @@ module.exports = wallaby => ({
   ],
   env: {
     type: 'node',
-    runner: 'node'
+    // runner: 'node'
     // env: {
     //   params: 'DEBUG=*;'
     // }
