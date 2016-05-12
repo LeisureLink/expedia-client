@@ -1,4 +1,6 @@
 # Expedia QuickConnect Client
+
+[![Join the chat at https://gitter.im/LeisureLink/expedia-client](https://badges.gitter.im/LeisureLink/expedia-client.svg)](https://gitter.im/LeisureLink/expedia-client?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > Node.js client to interact with Expedia's QuickConnect Client.
   
 ## Installation
