@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/.bin/ava test",
+    "test": "_mocha test/**/*.tests.js",
     "build": "babel src -d build -s inline",
     "prepublish": "npm run build",
     "lint": "esw --quiet"
@@ -33,9 +33,11 @@
     "babel-core": "^6.3.21",
     "babel-preset-pundits": "^1.0.4",
     "babel-register": "^6.8.0",
+    "code": "^2.3.0",
     "eslint": "^2.5.3",
     "eslint-config-leisurelink": "^1.0.2",
     "eslint-watch": "^2.1.10",
+    "mocha": "^2.4.5",
     "source-map-support": "^0.4.0"
   },
   "ava": {

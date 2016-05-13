@@ -1,9 +1,7 @@
-'use strict';
-
-import Test from 'ava';
 import Client from '../src';
 
-Test('username is required', (t) => t.throws(() => Client()));
+describe('Client', () => {
+  it('requires username', () => expect(() => Client()).to.throw(/username/));
 
-Test('password is required', (t) => t.throws(() => Client()));
-
+  it('requires password', () => expect(() => Client()).to.throw(/password/));
+});

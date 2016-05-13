@@ -1,5 +1,3 @@
-'use strict';
-
 import R from 'ramda';
 import Http from '../internals/http';
 import * as Validation from '../internals/validation';

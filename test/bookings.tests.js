@@ -1,56 +1,69 @@
-'use strict';
-
-import Test from 'ava';
 import Client from '../src';
 
 const client = Client('anyuser', 'ECLPASS');
 
+const validateResponse = (response) => {
+  expect(response.status).to.be.equal(200);
+  expect(response.error).to.not.be.ok;
+};
 
-Test('allByHotel', (t) => {
-  const hotelId = 111;
-  return client.bookings.allByHotel(hotelId)
-    .then(response => {
-      const bookingRetrieval = response.data.bookingretrievalrs;
-      t.is(response.status, 200);
-      t.is(bookingRetrieval.bookings.booking[0].hotel.$id, hotelId);
+describe('Bookings', () => {
+
+  describe('allByHotel', () => {
+
+    it('retrieves bookings by hotel', () => {
+      const hotelId = 111;
+      return client.bookings.allByHotel(hotelId)
+        .then(response => {
+          validateResponse(response);
+          const bookingRetrieval = response.data.bookingretrievalrs;
+          expect(bookingRetrieval.bookings.booking[0].hotel.$id).to.be.equal(hotelId);
+        });
     });
-});
+  });
 
-Test('allByPreviousDays', (t) => {
-  return client.bookings.allByPreviousDays(20)
-    .then(response => {
-      t.is(response.status, 200);
-      t.falsy(response.error);
-      const bookingRetrieval = response.data.bookingretrievalrs;
-      t.truthy(bookingRetrieval.bookings.booking);
+  describe('allByPreviousDays', () => {
+
+    it('retrieves bookings for last 20 days', () => {
+      return client.bookings.allByPreviousDays(20)
+        .then(response => {
+          validateResponse(response);
+          const bookingRetrieval = response.data.bookingretrievalrs;
+          expect(bookingRetrieval.bookings.booking).to.be.ok;
+        });
     });
-});
+  });
 
-Test('byBookingId', (t) => {
-  const bookingId = 99;
-  return client.bookings.byBookingId(bookingId)
-    .then(response => {
-      t.is(response.status, 200);
-      t.falsy(response.error);
-      const bookingRetrieval = response.data.bookingretrievalrs;
-      t.is(bookingRetrieval.bookings.booking.$id, bookingId);
+  describe('byBookingId', () => {
+
+    it('finds a booking by id', () => {
+      const bookingId = 99;
+      return client.bookings.byBookingId(bookingId)
+        .then(response => {
+          validateResponse(response);
+          const bookingRetrieval = response.data.bookingretrievalrs;
+          expect(bookingRetrieval.bookings.booking.$id).to.be.equal(bookingId);
+        });
     });
-});
+  });
 
-Test('allByStatus(): status is valid', (t) => {
-  const status = 'pending';
+  describe('allByStatus(): status is valid', () => {
 
-  return client.bookings.allByStatus(status)
-    .then(response => {
-      t.is(response.status, 200);
-      t.falsy(response.error);
-      const booking = response.data.bookingretrievalrs.bookings.booking[0];
-      t.is(booking.$status, status);
+    it('has a valid status', () => {
+      const status = 'pending';
+
+      return client.bookings.allByStatus(status)
+        .then(response => {
+          validateResponse(response);
+          const booking = response.data.bookingretrievalrs.bookings.booking[0];
+          expect(booking.$status).to.be.equal(status);
+        });
     });
-});
 
-Test('allByStatus(): status is valid', (t) => {
-  const status = 'bogus';
-  t.throws(client.bookings.allByStatus(status));
-});
+    it('has an invalid status', () => {
+      const status = 'bogus';
+      expect(() => client.bookings.allByStatus(status)).to.throw();
+    });
 
+  });
+});

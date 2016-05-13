@@ -1,5 +1,3 @@
-'use strict';
-
 import parser from './parser';
 import builder from './builder';
 

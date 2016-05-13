@@ -1,5 +1,3 @@
-'use strict';
-
 import { validator, Schemas } from './internals/validation';
 import Bookings from './booking';
 
