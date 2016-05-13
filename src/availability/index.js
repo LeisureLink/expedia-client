@@ -1,3 +1,5 @@
+'use strict';
+
 // TODO: Implement
 
 import * as Validation from '../internals/validation';

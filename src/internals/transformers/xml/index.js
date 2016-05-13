@@ -1,3 +1,5 @@
+'use strict';
+
 import R from 'ramda';
 import Xml from '../../xml';
 

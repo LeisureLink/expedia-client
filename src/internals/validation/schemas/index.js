@@ -1,3 +1,5 @@
+'use strict';
+
 import Joi from 'joi';
 
 export const Availability = Joi.array().items(Joi.object({

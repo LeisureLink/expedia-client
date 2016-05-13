@@ -1,3 +1,5 @@
+'use strict';
+
 import Jxon from 'jxon';
 
 export default (value) => {

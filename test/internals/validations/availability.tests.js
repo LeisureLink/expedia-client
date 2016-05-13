@@ -1,3 +1,5 @@
+'use strict';
+
 import Test from 'ava';
 
 Test.skip('valid availability', () => {

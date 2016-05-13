@@ -1,3 +1,5 @@
+'use strict';
+
 import Test from 'ava';
 import Xml from '../../../src/internals/xml';
 import FS from 'fs';

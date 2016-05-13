@@ -1,3 +1,5 @@
+'use strict';
+
 import Test from 'ava';
 import Client from '../src';
 
