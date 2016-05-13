@@ -1,3 +1,2 @@
-import { expect } from 'code';
-
-global.expect = expect;
+require('babel-register');
+global.expect = require('code').expect;

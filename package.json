@@ -42,7 +42,6 @@
   "ava": {
     "failFast": true,
     "require": [
-      "babel-register",
       "./test/helpers"
     ],
     "babel": "inherit"

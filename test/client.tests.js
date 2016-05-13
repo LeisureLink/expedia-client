@@ -8,3 +8,4 @@ Test('client has bookings.allByHotel(hotelId)', (t) => expect(client.bookings.al
 Test('username is required', () => expect((t) => Client()).to.throw(/username/));
 
 Test('password is required', () => expect((t) => Client('bogus')).to.throw(/password/));
+
