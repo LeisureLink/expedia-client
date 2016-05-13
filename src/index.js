@@ -20,13 +20,17 @@ const validateCredentials = (username, password) => {
  *
  * @param {String} username
  * @param {String} password
- *
+ * @param {Object} [options]
+ * @param {String} [options.bookingsEndpointUri]
  */
-export default (username, password) => {
+export default (username, password, options = {}) => {
   validateCredentials(username, password);
 
-  const bookings = Bookings(username, password);
+  if (options.testing) {
+    options.bookingsEndpointUri = 'https://simulator.expediaquickconnect.com/connect/br';
+  }
 
+  const bookings = Bookings(username, password, { bookingsEndpointUri: options.bookingsEndpointUri });
   return {
     bookings
   };

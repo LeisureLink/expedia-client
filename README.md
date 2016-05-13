@@ -1,5 +1,5 @@
 # Expedia QuickConnect Client 
-> Node.js client to interact with Expedia's QuickConnect Client.
+> Client to work with [Expedia's QuickConnect](https://developer.expediapartnercentral.com/apis/availability-rates-restrictions-booking-and-reservations/eqc-api/reference.html) API 
 
 [![CircleCI](https://circleci.com/gh/LeisureLink/expedia-client.svg?style=svg)](https://circleci.com/gh/LeisureLink/expedia-client)
 
@@ -8,98 +8,97 @@
 **Using NPM**
 
 ```bash
- $ npm i @leisurelink/expedia-client -S
+ $ npm i expedia-quickconnect -S
 ```
 
-### Usage
+## API
+
+The client requires a username and password by default.
+
+
+
+### Booking Retrievals
+
+Interact with bookings from Expedia.  The testing endpoint is: https://simulator.expediaquickconnect.com/connect/br
+
+---
+
+#####  _bookings.all()_ : Promise
+> Retrieves the last 250 max listings
+
+##### Example
 
 ```js
-import Expedia from 'expedia';
+import ExpediaClient from 'expedia-quickconnect';
 
-const client = Expedia('username', 'password');
-```
-
-
-## API 
-
-### Bookings
-
-### Availability and Rates
-
->  Send Expedia updates on availability and rates
-
-#### _.update(hotelId, updates = []) : <Promise<{}>_
-
-* **hotelId <Integer>**: Positive integer representing the Hotel's Id
-* **updates <Array<{}>>**: The availability and rates updates
-
-#### Usage
-
-```js
-import Expedia from 'expedia';
-
-const client = Expedia('username', 'password');
-
-const hotelId = 1234;
-
-const updates = [
-  {
-    from: '2014-12-15',
-    to: '2015-01-20',
-    roomId: 40000,
-    isRoomClosed: false,
-    
-    // Optional - Assigns only days within the range when day is set to true
-    days: { 
-      sunday: false,
-      monday: false,
-      tuesday: false,
-      wednesday: false,
-      thursday: false,
-      friday: false,
-      saturday: false
-    },
-    
-    inventory: {
-      totalInventoryAvailable: 10,
-      
-      // Optional
-      flexibleAllocation: 0
-    },
-    
-    ratesPlan: {
-      id: 40000,
-      isRateClosed: false,
-      currency: 'USD',
-      
-      //Optional
-      rateChangeIndicator: false,
-      
-      rates: [
-        // Enum Types: ['PerDay', 'PerOccupancy', 'PerPerson']
-        // When 'PerOccupancy', the occupancy attribute is required, else it's optional
-        
-        { rate:  60.00, occupancy: 1, kind: 'PerOccupancy' },
-        { rate:  100.00, occupancy: 2, kind: 'PerOccupancy' },
-        { rate:  135.00, occupancy: 3, kind: 'PerOccupancy' },
-        { rate:  160.00, occupancy: 4, kind: 'PerOccupancy' }
-      ],
-      
-      restrictions: {
-        closedToArrival: false,
-        closedToDeparture: false,
-        lengthOfStay: { minDays: 1, maxDays: 7}
-      }
-    }
-  }
-];
-
-client.availabilityAndRates.update(hotelId, updates)
-  .then(result => {
-    // Do something with the result
-  })
-  .catch(err => {
-    // Handle error or let it bubble up
+const client = ExpediaClient('username', 'password', { testing: true });
+client.bookings.all()
+  .then(response => {
+    // Do something with response
   });
 ```
 
+---
+
+##### _bookings.allByHotel(hotelId)_ : Promise
+> Retrieves the bookings filtered by the booking Id
+
+| Parameter  | Type | Description   |
+|---|---|---|
+| hotelId   | Number | Hotel's Id   |
+
+##### Example
+
+```js
+import ExpediaClient from 'expedia-quickconnect';
+
+const client = ExpediaClient('username', 'password', { testing: true });
+client.bookings.allByHotel(111)
+  .then(response => {
+    // Do something with response
+  });
+```
+
+---
+
+##### _bookings.allByPreviousDays(previousDays)_ : Promise
+
+| Parameter  | Type | Description   |
+|---|---|---|
+| previousDays   | Number | The number of days in the past. Must be between 1 and 30    |
+
+```js
+import ExpediaClient from 'expedia-quickconnect';
+
+const client = ExpediaClient('username', 'password', { testing: true });
+client.bookings.allByPreviousDays(5)
+  .then(response => {
+    // Do something with response
+  });
+```
+
+---
+
+##### _bookings.allByStatus(status)_ : Promise
+
+| Parameter  | Type | Description   |
+|---|---|---|
+| status   | Enum(String) | Booking status. Must be: _pending, retrieved, comfirmed_
+
+```js
+import ExpediaClient from 'expedia-quickconnect';
+
+const client = allByStatus('username', 'password', { testing: true });
+const status = client.booking.Status;
+
+client.bookings.allByStatus(status.confirmed)
+  .then(response => {
+    // Do something with response
+  });
+```
+
+## Roadmap
+
+* Booking Confirmations
+* Availability and Rates
+* Product Availability and Rates

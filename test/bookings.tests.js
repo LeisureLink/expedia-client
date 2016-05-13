@@ -1,6 +1,6 @@
 import Client from '../src';
 
-const client = Client('anyuser', 'ECLPASS');
+const client = Client('anyuser', 'ECLPASS', { testing: true });
 
 const validateResponse = (response) => {
   expect(response.status).to.be.equal(200);
@@ -8,6 +8,16 @@ const validateResponse = (response) => {
 };
 
 describe('Bookings', () => {
+
+  describe('all()', () => {
+
+    it('gets all the known bookings', () => {
+      return client.bookings.all().then(response => {
+        validateResponse(response);
+        expect(response.data.bookingretrievalrs.bookings.booking).to.be.ok;
+      });
+    });
+  });
 
   describe('allByHotel', () => {
 

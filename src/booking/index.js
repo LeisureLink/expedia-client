@@ -12,15 +12,20 @@ export const Status = {
 const hasStatus = R.has(R.__, Status);
 const validateStatus = (status) => new Promise((resolve, reject) => !hasStatus(status) ? reject(new Error(`Status '${status}' is not valid`)) : resolve());
 
-export default (username, password) => {
+export default (username, password, options = {}) => {
+  const uri = options.bookingsEndpointUri;
+  if (!uri) throw Error('Bookings Endpoint Uri is invalid.  Set a uri or enable testing mode');
 
   const getBookings = (predicate = {}) => {
     return Validation.validateBookingRetrieval(predicate)
       .then(result => TransformToXml.bookingRetrieval(username, password, result))
-      .then(xml => Http.post('https://simulator.expediaquickconnect.com/connect/br', xml));
+      .then(xml => Http.post(options.bookingsEndpointUri, xml));
   };
 
   return {
+    all() {
+      return getBookings();
+    },
     allByHotel(hotelId) {
       return getBookings({ hotelId });
     },
@@ -36,5 +41,3 @@ export default (username, password) => {
     }
   };
 };
-
-
