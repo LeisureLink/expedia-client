@@ -2,7 +2,14 @@
 {
   "extends": "leisurelink",
   "env": {
-    "es6": true
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "no-underscore-dangle": 0
+  },
+  "globals": {
+    "expect": true
   },
   "parserOptions": {
     "sourceType": "module"

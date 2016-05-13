@@ -51,5 +51,11 @@ export const BookingQuery = Joi.object().keys({
   hotelId: Joi.number().positive().optional(),
   bookingId: Joi.number().positive().optional(),
   status: Joi.string().optional(),
-  previousDays: Joi.number().min(1).max(30).default(1).optional()
+  previousDays: Joi.number().min(1).max(30).optional()
 });
+
+export const Authentication = Joi.object({
+  username: Joi.string().required().min(4).max(30).trim(),
+  password: Joi.string().required().min(6).max(30).trim()
+});
+

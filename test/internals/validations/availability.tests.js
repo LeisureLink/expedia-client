@@ -1,8 +1,6 @@
 import Test from 'ava';
 
-import Validator from '../../../src/internals/validation';
-
-Test('valid availability', () => {
+Test.skip('valid availability', () => {
   const availabilityAndRates = [{
     from: '2014-12-15',
     to: '2015-01-20',
@@ -32,9 +30,10 @@ Test('valid availability', () => {
     }
   }];
 
-  return Validator.availability(availabilityAndRates)
-    .then(result => {
-      expect(result[0].ratesPlan.rates).to.have.length(4);
-      expect(result[0].ratesPlan.restrictions.lengthOfStay).to.be.ok;
-    });
+  // Todo: Keeping the test for schema purposes
+  // return Validator.availability(availabilityAndRates)
+  //   .then(result => {
+  //     expect(result[0].ratesPlan.rates).to.have.length(4);
+  //     expect(result[0].ratesPlan.restrictions.lengthOfStay).to.be.ok;
+  //   });
 });

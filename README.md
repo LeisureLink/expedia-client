@@ -20,6 +20,10 @@ const client = Expedia('username', 'password');
 
 ## API 
 
+### Bookings
+
+
+
 ### Availability and Rates
 
 >  Send Expedia updates on availability and rates

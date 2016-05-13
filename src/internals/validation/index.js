@@ -17,23 +17,13 @@ const validate = (value, schema, options) => {
   });
 };
 
-export default {
-  availability(value, options) {
-    return validate(value, Schemas.Availability, options);
-  },
+const validateSync = (value, schema, options) => {
+  options = options || JOI_OPTIONS;
+  schema = Joi.compile(schema);
+  return Joi.validate(value, schema, options);
+};
 
-  bookings: {
-    confirmation(value, options) {
+export const validateBookingRetrieval = (value, options) => validate(value, Schemas.BookingQuery, options);
+export const validator = validateSync;
 
-    },
-
-    retrieval(value, options) {
-      return validate(value, Schemas.BookingQuery, options);
-    }
-  },
-  parr: {
-    retrieval(value, options) {
-
-    }
-  }
-}
+export { Schemas };
