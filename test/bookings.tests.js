@@ -62,7 +62,7 @@ describe('Bookings', () => {
 
     it('has an invalid status', () => {
       const status = 'bogus';
-      expect(() => client.bookings.allByStatus(status)).to.throw();
+      return client.bookings.allByStatus(status).catch(err => expect(err).to.be.ok);
     });
 
   });
