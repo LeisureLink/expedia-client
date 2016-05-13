@@ -1,6 +1,5 @@
 import Test from 'ava';
 import Xml from '../../../src/internals/xml';
-
 import FS from 'fs';
 import Path from 'path';
 
@@ -15,17 +14,17 @@ const readFile = (path) => {
 
 const AvailabilityResponse = Path.resolve(__dirname, '../../fixtures/availability-response.xml');
 
-Test('parses the response correctly', () => {
+Test('parses the response correctly', (t) => {
   return readFile(AvailabilityResponse).then(xml => {
     const result = Xml.parser(xml);
-    expect(result.availrateupdaters.success).to.be.true();
+    t.truthy(result.availrateupdaters.success);
   });
 });
 
-Test('throws and error if blank xml is passed', () => {
-  expect(() => Xml.parser()).throws(/Xml is required/);
+Test('throws and error if blank xml is passed', (t) => {
+  t.throws(() => Xml.parser());
 });
 
-Test('throws and error if empty string is passed', () => {
-  expect(() => Xml.parser()).throws(/Xml is required/);
+Test('throws and error if empty string is passed', (t) => {
+  t.throws(() => Xml.parser(''));
 });

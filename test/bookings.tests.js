@@ -4,52 +4,51 @@ import Client from '../src';
 const client = Client('anyuser', 'ECLPASS');
 
 
-Test('allByHotel', () => {
-  return client.bookings.allByHotel(111)
+Test('allByHotel', (t) => {
+  const hotelId = 111;
+  return client.bookings.allByHotel(hotelId)
     .then(response => {
-      expect(response.status).to.be.equal(200);
       const bookingRetrieval = response.data.bookingretrievalrs;
-      expect(bookingRetrieval.bookings.booking).to.not.be.empty();
+      t.is(response.status, 200);
+      t.is(bookingRetrieval.bookings.booking[0].hotel.$id, hotelId);
     });
 });
 
-Test('allByPreviousDays', () => {
+Test('allByPreviousDays', (t) => {
   return client.bookings.allByPreviousDays(20)
     .then(response => {
-      expect(response.status).to.be.equal(200);
+      t.is(response.status, 200);
+      t.falsy(response.error);
       const bookingRetrieval = response.data.bookingretrievalrs;
-      expect(bookingRetrieval.bookings.booking).to.not.be.empty();
+      t.truthy(bookingRetrieval.bookings.booking);
     });
 });
 
-Test('byBookingId', () => {
+Test('byBookingId', (t) => {
   const bookingId = 99;
   return client.bookings.byBookingId(bookingId)
     .then(response => {
-      expect(response.status).to.be.equal(200);
+      t.is(response.status, 200);
+      t.falsy(response.error);
       const bookingRetrieval = response.data.bookingretrievalrs;
-      expect(bookingRetrieval.bookings.booking.$id).to.be.equal(bookingId);
+      t.is(bookingRetrieval.bookings.booking.$id, bookingId);
     });
 });
 
-Test('allByStatus(): status is valid', () => {
+Test('allByStatus(): status is valid', (t) => {
   const status = 'pending';
 
   return client.bookings.allByStatus(status)
     .then(response => {
-      expect(response.status).to.be.equal(200);
+      t.is(response.status, 200);
+      t.falsy(response.error);
       const booking = response.data.bookingretrievalrs.bookings.booking[0];
-      expect(booking.$status).to.be.equal(status);
+      t.is(booking.$status, status);
     });
 });
 
-Test('allByStatus(): status is valid', () => {
+Test('allByStatus(): status is valid', (t) => {
   const status = 'bogus';
-
-  return client.bookings.allByStatus(status)
-    .catch(err => {
-      expect(err.message).to.contain('Status');
-    });
-
+  t.throws(client.bookings.allByStatus(status));
 });
 

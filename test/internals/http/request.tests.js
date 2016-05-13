@@ -1,10 +1,9 @@
 import Test from 'ava';
-
 import Http from '../../../src/internals/http';
 
 const uri = 'https://simulator.expediaquickconnect.com/connect/ar';
 
-Test('performs valid xml request', () => {
+Test('performs valid xml request', (t) => {
   const raw =
     `<?xml version="1.0" encoding="UTF-8"?> 
       <AvailRateUpdateRQ xmlns="http://www.expediaconnect.com/EQC/AR/2011/06">
@@ -20,7 +19,7 @@ Test('performs valid xml request', () => {
 
   return Http.post(uri, raw)
     .then(response => {
-      expect(response.status).to.equal(200);
-      expect(response.data.availrateupdaters.success).to.be.true();
+      t.is(response.status, 200);
+      t.truthy(response.data.availrateupdaters.success);
     });
 });

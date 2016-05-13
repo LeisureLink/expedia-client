@@ -17,7 +17,7 @@ module.exports = wallaby => ({
     // }
   },
   testFramework: 'ava',
-  bootstrap: () => require('./test/helpers'),
+  // bootstrap: () => require('./test/helpers'),
   compilers: {
     '**/*.js': wallaby.compilers.babel()
   }
