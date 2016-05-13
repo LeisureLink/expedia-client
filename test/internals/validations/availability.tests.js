@@ -30,7 +30,7 @@ Test.skip('valid availability', () => {
     }
   }];
 
-  // Todo: Keeping the test for schema purposes
+  // Todo: Keeping the Test for schema purposes
   // return Validator.availability(availabilityAndRates)
   //   .then(result => {
   //     expect(result[0].ratesPlan.rates).to.have.length(4);

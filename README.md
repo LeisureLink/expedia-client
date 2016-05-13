@@ -1,6 +1,8 @@
-# Expedia QuickConnect Client
+# Expedia QuickConnect Client 
 > Node.js client to interact with Expedia's QuickConnect Client.
-  
+
+[![CircleCI](https://circleci.com/gh/LeisureLink/expedia-client.svg?style=svg)](https://circleci.com/gh/LeisureLink/expedia-client)
+
 ## Installation
 
 **Using NPM**
@@ -21,8 +23,6 @@ const client = Expedia('username', 'password');
 ## API 
 
 ### Bookings
-
-
 
 ### Availability and Rates
 

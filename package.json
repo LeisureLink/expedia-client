@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "ava",
+    "test": "./node_modules/.bin/ava test",
     "build": "babel src -d build -s inline",
     "prepublish": "npm run build",
     "lint": "esw --quiet"
