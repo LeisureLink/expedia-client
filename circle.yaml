@@ -1,7 +1,9 @@
 machine:
   node:
     version: 6
-
+dependencies:
+  pre:
+    - rm -rf ~/$CIRCLE_PROJECT_REPONAME/node_modules
 deployment:
   release:
     tag: /v[0-9]+(\.[0-9]+)*/
