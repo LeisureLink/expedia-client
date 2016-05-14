@@ -13,7 +13,22 @@
 
 ## API
 
-The client requires a username and password by default.
+The client requires a username, a password, and the different endpoints by default. 
+
+```js
+import ExpediaClient from 'expedia-quickconnect';
+
+const client = ExpediaClient('username', 'password', { bookingsEndpointUri: 'SOME_URL'});
+```
+
+To ease development there is a 'testing' mode.
+
+```js
+import ExpediaClient from 'expedia-quickconnect';
+
+const client = ExpediaClient('username', 'password', { testing: true });
+```
+
 
 
 
