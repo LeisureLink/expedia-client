@@ -23,8 +23,8 @@ export default (username, password, options = {}) => {
   };
 
   return {
-    all() {
-      return getBookings();
+    all(query) {
+      return getBookings(query);
     },
     allByHotel(hotelId) {
       return getBookings({ hotelId });

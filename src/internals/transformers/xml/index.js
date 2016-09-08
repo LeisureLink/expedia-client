@@ -64,9 +64,9 @@ export const bookingRetrieval = (username, password, result, options = {}) => {
       appendHotel(result),
       {
         ParamSet: R.omit(fields, R.mergeAll([
+          appendStatus(result),
           appendPreviousDays(result),
-          appendBookingId(result),
-          appendStatus(result)
+          appendBookingId(result)
         ]))
       }
     ]))
